@@ -67,6 +67,7 @@ if(!args.h && !args.j){
   }
 
   if(day == 0){
+    
     console.log("today")
   }else if(day > 1){
     console.log("int" + day + "days.");
