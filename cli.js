@@ -62,7 +62,7 @@ if(args.h){
   
   const day = args.d;
 
-  if(data.daily.precipitation[day] == 0){
+  if(data.daily.precipitation_unit[day] == 0){
     console.log("You will need your galoshes");
   }else{
     console.log("You will not need your galoshes");
