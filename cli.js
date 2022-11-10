@@ -62,19 +62,19 @@ if(args.h){
   
   const day = args.d;
 
-  if(data.daily.precipitation[day] != 0){
+  if(data.daily.precipitation[day] == 0){
     console.log("You will need your galoshes");
   }else{
-    console.log("You will not need your galoshes")
+    console.log("You will not need your galoshes");
   }
 
   // exact day
   if(day == 0){
-    console.log("today.")
+    console.log("today.");
   }else if(day > 1){
     console.log("in" + day + "days.");
   }else{
-    console.log("tomorrow.")
+    console.log("tomorrow.");
   }
 
   process.exit(0);
