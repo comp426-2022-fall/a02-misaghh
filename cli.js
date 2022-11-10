@@ -52,7 +52,8 @@ if(args.h){
   //   console.log("longitude out of range")
   // }
 
-  const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m,relativehumidity_2m,rain&windspeed_unit=mph&precipitation_unit=inch&timezone=' + timezone);
+  //const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m,relativehumidity_2m,rain&windspeed_unit=mph&precipitation_unit=inch&timezone=' + timezone);
+  const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&timezone=' + timezone);
   const data = await response.json();
 
   if(args.j){
@@ -62,7 +63,7 @@ if(args.h){
   
   const day = args.d;
 
-  if(data.daily.precipitation_unit[day] == 0){
+  if(data.daily.precipitation_hours[day] != 0){
     console.log("You will need your galoshes");
   }else{
     console.log("You will not need your galoshes");
