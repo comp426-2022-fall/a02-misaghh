@@ -25,7 +25,7 @@ if(args.h){
   }
 }
 
-  let timezone = moment.tz.guest();
+  let timezone = moment.tz.guess();
 
 
   // if(args.z){
