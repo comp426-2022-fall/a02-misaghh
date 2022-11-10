@@ -25,54 +25,58 @@ if(args.h){
   }
 }
 
-  const timezone = moment.tz.guest()
-  if(args.z){
-    timezone = args.z;
-  }
+  let timezone = moment.tz.guest();
 
-  let latitude = '35.910259';
-  let longitude = '-79.055473';
 
-  if(args.n){
-    latitude = args.n;
-  }else if(args.s){
-    latitude = args.s;
-  }else{
-    console.log("lattitude out of range")
-  }
+  // if(args.z){
+  //   timezone = args.z;
+  // }
+  let longitude = args.e || args.w * -1;
+  let latitude = args.n || args.s * -1;
+  // let latitude = '35.910259';
+  // let longitude = '-79.055473';
 
-  if(args.e){
-    longitude = args.e;
-  }else if(args.w){
-    longitude = args.w;
-  }else{
-    console.log("longitude out of range")
-  }
+  // if(args.n){
+  //   latitude = args.n;
+  // }else if(args.s){
+  //   latitude = args.s;
+  // }else{
+  //   console.log("lattitude out of range")
+  // }
+
+  // if(args.e){
+  //   longitude = args.e;
+  // }else if(args.w){
+  //   longitude = args.w;
+  // }else{
+  //   console.log("longitude out of range")
+  // }
 
   const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m,relativehumidity_2m,rain&windspeed_unit=mph&precipitation_unit=inch&timezone=' + timezone);
   const data = await response.json();
 
-if(!args.h && !args.j){
-  let day = 1;
-
-  if(args.d){
-    day = args.d;
+  if(args.j){
+    console.log(data);
+    process.exit(0);
   }
+  
+  const day = args.d;
 
- 
-  if(data.daily.precipitation_hours[args.d] == 0){
-    console.log("will need your galoshes");
+  if(data.daily.precipitation_hours[day] != 0){
+    console.log("You will need your galoshes");
   }else{
-    console.log("you will not need your galoshes")
+    console.log("You will not need your galoshes")
   }
 
+  // exact day
   if(day == 0){
-    
-    console.log("today")
+    console.log("today.")
   }else if(day > 1){
-    console.log("int" + day + "days.");
+    console.log("in" + day + "days.");
   }else{
-    console.log("tomorrow")
+    console.log("tomorrow.")
   }
 
-}
+  process.exit(0);
+
+
